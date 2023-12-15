@@ -7,13 +7,13 @@
 	"homepage": "https://andreasjr.com",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build --webpack-copy-php",
+		"build": "wp-scripts build --webpack-copy-php  --webpack-src-dir=blocks/src --output-path=blocks/build",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --webpack-copy-php"
+		"start": "wp-scripts start --webpack-copy-php  --webpack-src-dir=blocks/src --output-path=blocks/build"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^26.19.0"
