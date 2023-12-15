@@ -2,9 +2,9 @@
 /**
  * Plugin Name:       andreasjr-tools
  * Plugin URI:        https://andreasjr.com
- * Description:       Example block scaffolded with Create Block tool.
- * Requires at least: 6.1
- * Requires PHP:      7.0
+ * Description:       Tools by Andreas for Andreas
+ * Requires at least: 6.3
+ * Requires PHP:      7.4
  * Version:           1.0.0
  * Author:            Andreas Reif
  * License:           GPL-2.0-or-later
@@ -130,7 +130,7 @@ add_action( 'init', function() {
 		"map_meta_cap" => true,
 		"hierarchical" => true,
 		"can_export" => true,
-		"rewrite" => [ "slug" => "project", "with_front" => false ],
+		"rewrite" => [ "slug" => "projects", "with_front" => false ],
 		"query_var" => true,
 		"menu_icon" => "dashicons-excerpt-view",
 		"supports" => [ "title", "editor", "thumbnail", "excerpt", "custom-fields" ],
