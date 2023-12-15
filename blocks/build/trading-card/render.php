@@ -25,7 +25,7 @@ $permalink = get_permalink($block->context['postId']);
 
 	<div class="content-actions">
 		<a href="<?=$permalink?>" class="wp-element-button">Learn More</a>
-		<a href="<?= $resource_url ?>" class="wp-element-button">Get Shortcut</a>
+		<a href="<?= $resource_url ?>" target="_blank" class="wp-element-button">Get Shortcut</a>
 	</div>
 	
 </div>
