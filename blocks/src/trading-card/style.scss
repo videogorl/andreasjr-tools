@@ -6,6 +6,9 @@
  */
 
 .wp-block-andreasjr-tools-trading-card {
+	margin-left: auto;
+    margin-right: auto;
+	
 	--trading-card--image-accent: var(--wp--preset--color--red);
 	--trading-card--icon-size: 150px;
 	--trading-card--icon-padding: calc(var(--trading-card--icon-size)/2);
