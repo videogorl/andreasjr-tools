@@ -218,3 +218,5 @@ add_action( 'enqueue_block_editor_assets', function() {
 		$dependencies['version']
 	);
 } );
+
+add_theme_support( 'post-formats', array( 'aside', 'quote', 'status', 'image', 'gallery', 'chat', 'link', 'audio', 'video' ) );
