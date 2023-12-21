@@ -198,23 +198,60 @@ add_action( 'init', function() {
 	
 } );
 
+// Enqueue Editor Assets
 add_action( 'enqueue_block_editor_assets', function() {
-	/**
-	 * Find out if plugin has a helper
-	 */
-	$helper_url = plugin_dir_path( __FILE__ ) . 'editor/build/helper.php';
-	if (file_exists( $helper_url )) {
-		include $helper_url;
+
+	$plugin_dir = plugin_dir_url( __FILE__ ) . 'editor/build/';
+
+	foreach (glob( $plugin_dir . '*', GLOB_ONLYDIR ) as $folder) {
+		$dep_name = basename($folder);
+
+		/**
+		 * Find out if plugin has a helper
+		 */
+		$helper_url = $folder . '/helper.php';
+		if (file_exists( $helper_url )) include $helper_url;
+		
+		/**
+		 * Register script
+		 */
+		$dependencies = require($folder . '/index.asset.php');
+		wp_enqueue_script(
+			'andreasjr-' 	. $dep_name . '-script',
+			$plugin_dir 	. $dep_name . '/index.js',
+			$dependencies['dependencies'],
+			$dependencies['version']
+		);
 	}
-	
-	/**
-	 * Register script
-	 */
-	$dependencies = require(plugin_dir_path( __FILE__ ) . 'editor/build/index.asset.php');
-	wp_enqueue_script(
-		'andreasjr-tools-editor-script', // unique handle
-		plugin_dir_url( __FILE__ ) . 'editor/build/index.js',
-		$dependencies['dependencies'],
-		$dependencies['version']
-	);
+
 } );
+
+// add_filter( 'get_block_templates', function ( $query_result, $query, $template_type ) {
+//     if( is_post_type_archive('project-gallery') ) {
+//         $template = plugin_dir_path(__FILE__)  .'templates/archive-project.html';
+//     }
+
+// 	$theme = wp_get_theme();
+
+//     $template_contents = file_get_contents( plugin_dir_path( __DIR__ ) . 'templates/archive-ale.html' );
+//     $template_contents = str_replace( '~theme~', $theme->stylesheet, $template_contents );
+
+//     $new_block                 = new WP_Block_Template();
+//     $new_block->type           = 'wp_template';
+//     $new_block->theme          = $theme->stylesheet;
+//     $new_block->slug           = 'archive-ale';
+//     $new_block->id             = $theme->stylesheet . '//archive-ale';
+//     $new_block->title          = 'archive-ale';
+//     $new_block->description    = '';
+//     $new_block->source         = 'custom';
+//     $new_block->status         = 'publish';
+//     $new_block->has_theme_file = true;
+//     $new_block->is_custom      = true;
+//     $new_block->content        = $template_contents;
+
+//     $query_result[] = $new_block;
+
+//     return $query_result;
+// } );
+
+// add_theme_support( 'post-formats', array( 'aside', 'quote', 'status', 'image', 'gallery', 'chat', 'link', 'audio', 'video' ) );
