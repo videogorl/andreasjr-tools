@@ -13,18 +13,18 @@ const defaultBlockEntries = defaultConfig.entry();
 let editorScripts = {};
 const editorScriptsSrcDir = './editor/src/';
 const editorScriptsBuildDir = '../../editor/build/';
-glob( './editor/src/**/index.js' ).forEach( e => {
+// glob( './editor/src/**/index.js' ).forEach( e => {
 
-    // Get directory name
-    let dirName = e.substring( editorScriptsSrcDir.length );
-    let dirLength = dirName.length - "/index.js".length;
-    dirName = dirName.substring(0, dirLength)
+//     // Get directory name
+//     let dirName = e.substring( editorScriptsSrcDir.length );
+//     let dirLength = dirName.length - "/index.js".length;
+//     dirName = dirName.substring(0, dirLength)
 
-    // Add directory to entry points
-    if (!dirName) return; 
-    editorScripts[editorScriptsBuildDir + dirName + '/index'] = path.resolve(e);
+//     // Add directory to entry points
+//     if (!dirName) return; 
+//     editorScripts[editorScriptsBuildDir + dirName + '/index'] = path.resolve(e);
 
-});
+// });
 
 
 // Exports
