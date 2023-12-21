@@ -4,6 +4,10 @@ const { sync: glob } = require( 'fast-glob' );
 
 // Change path for blocks
 const defaultBlockEntries = defaultConfig.entry();
+// let newBlockEntries = {};
+// Object.keys(defaultBlockEntries).forEach((e) => {
+//     newBlockEntries['blocks/' + e] = defaultBlockEntries[e];
+// });
 
 // Editor scripts
 let editorScripts = {};
@@ -27,8 +31,7 @@ glob( './editor/src/**/index.js' ).forEach( e => {
 module.exports = {
     ...defaultConfig,
     entry: {
-        // '../../admin/build/admin': path.resolve('./admin/src/index.js' ),
-        ...editorScripts,
+        '../../editor/build/index':path.resolve('./editor/src/index.js'),
         ...defaultBlockEntries,
     }
 };
