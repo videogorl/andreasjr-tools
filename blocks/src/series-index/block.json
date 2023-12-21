@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "andreasjr-tools/series-index",
+	"version": "1.0.0",
+	"title": "Series Index",
+	"category": "theme",
+	"icon": "smiley",
+	"description": "Display series that the post is part of.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"postId": {
+			"type": "string",
+			"default": "currentPost"
+		}
+	},
+	"textdomain": "andreasjr-tools",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": ["file:./style-index.css", "wp-block-buttons", "wp-block-button"],
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

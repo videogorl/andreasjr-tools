@@ -1,0 +1,14 @@
+{
+	"card-types": [
+		{
+			"slug": "shortcut",
+			"css": "is-style-shortcut",
+			"label": "Shortcut"
+		},
+		{
+			"slug": "theme",
+			"css": "is-style-theme",
+			"label": "Theme"
+		}
+	]
+}

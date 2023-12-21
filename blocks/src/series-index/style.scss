@@ -1,0 +1,89 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-andreasjr-tools-trading-card {
+	margin-left: auto;
+    margin-right: auto;
+
+	--trading-card--image-accent: var(--wp--preset--color--red);
+	--trading-card--icon-size: 150px;
+	--trading-card--icon-padding: calc(var(--trading-card--icon-size)/2);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	gap: 1rem;
+	border-radius: 5px;
+	overflow: hidden;
+
+	figure {
+		margin: 0;
+	}
+	h2 {
+		margin: 0;
+	}
+	.wp-element-button {
+		display: block;
+		text-align: center;
+	}
+	max-width: 320px !important;
+	background-color: black;
+	.content-title,
+	.content-description,
+	.content-actions {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+	.content-header {
+		position: relative;
+		height: var(--trading-card--icon-size);
+		margin-bottom: calc(var(--trading-card--icon-size)/2);
+		a {
+			text-decoration: none;
+			border-bottom: none;
+		}
+		figure {
+			width: 100%;
+			height: 100%;
+		}
+		figure.content-header--featured-image-background {
+			position: absolute;
+			inset: 0;
+			z-index: 0;
+			background: linear-gradient(45deg, var(--trading-card--image-accent) 0%, var(--wp--preset--color--primary) 100%);
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+		figure.content-header--resource-image {
+			position: relative;
+			top: var(--trading-card--icon-padding);
+			z-index: 1;
+			text-align: center;
+			img {
+				height: var(--trading-card--icon-size);
+				width: var(--trading-card--icon-size);
+				object-fit: contain;
+				aspect-ratio: 1/1;
+			}
+		}
+	}
+	.content-actions {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		gap: 1rem;
+		padding: 1rem;
+
+		.wp-block-button {
+			width: 50%;
+		}
+	}
+}
