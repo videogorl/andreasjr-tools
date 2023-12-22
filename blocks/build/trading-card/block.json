@@ -12,11 +12,28 @@
     "html": false
   },
   "attributes": {
-    "postId": {
+    "getDataFrom": {
       "type": "string",
       "default": "currentPost"
+    },
+    "postId": {
+      "type": "number",
+      "default": null
+    },
+    "customData": {
+      "type": "object",
+      "default": {
+        "title": "",
+        "description": "",
+        "image": {},
+        "url": ""
+      }
     }
   },
+  "usesContext": [
+    "postId",
+    "postType"
+  ],
   "textdomain": "andreasjr-tools",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
