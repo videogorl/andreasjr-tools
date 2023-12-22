@@ -18,6 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+if ( ! defined( 'ANDREASJR_TOOLS_ROOT_URL' ) ) {
+	define('ANDREASJR_TOOLS_ROOT_URL', plugin_dir_url(__FILE__));
+}
+
 /**
  * Registers the block using the metadata loaded from the `block.json` file.
  * Behind the scenes, it registers also all assets so they can be enqueued
