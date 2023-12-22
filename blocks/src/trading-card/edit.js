@@ -11,7 +11,17 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+
+import {
+	PanelBody,
+	SelectControl,
+	FormTokenField
+} from "@wordpress/components";
+
+import {
+	useSelect
+} from "@wordpress/data";
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -33,12 +43,74 @@ import settings from './settings.json';
  * @return {Element} Element to render.
  */
 export default function Edit({
-	attributes,
+	attributes: {
+		getDataFrom,
+		postId: selectedPostId,
+		customData
+	},
 	setAttributes,
-	context
+	context: {
+		postId,
+		postType
+	}
 }) {
+	const postOptions = useSelect( select => {
+		if (getDataFrom !== 'otherPost') return [];
+		const postList = select('core').getEntityRecords(
+			'postType',
+			'project-gallery'
+		)
+		
+		if (!postList) return [];
+
+		return postList.map( post => ({ value: post.id, label: post.title.rendered }) );
+	}, [getDataFrom]);
 	return (
 		<div { ...useBlockProps() }>
+			<InspectorControls>
+				<PanelBody title={__('Post')}>
+				<SelectControl
+					onChange	={(e) => setAttributes({getDataFrom: e})}
+					value		={getDataFrom}
+					options={[
+						{
+							disabled: true,
+							label: 'Select an Option',
+							value: ''
+						},
+						{
+							label: 'Current Post',
+							value: 'currentPost'
+						},
+						{
+							label: 'Other Post',
+							value: 'otherPost'
+						},
+						{
+							label: 'Custom Data',
+							value: 'custom'
+						}
+					]}
+				/>
+				{ getDataFrom == 'otherPost' && <SelectControl
+					label		={ __("Select a project") }
+					onChange	={ (e) => setAttributes({postId: e}) }
+					value		={ selectedPostId }
+					options		={[
+						{
+							label: postOptions.length <= 0 ? "Loading..." : "Select...",
+							value: null,
+							disabled: true
+						},
+						...postOptions
+					]}
+				/>}
+				</PanelBody>
+
+				{ getDataFrom == 'custom' && <PanelBody title={__('Custom Data')}>
+					
+				</PanelBody>}
+			</InspectorControls>
 			
 			{ __( 'Trading Card – hello from the editor!', 'andreasjr-tools' ) }
 		</div>
