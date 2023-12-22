@@ -74,6 +74,20 @@
 				aspect-ratio: 1/1;
 			}
 		}
+		.post-category {
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding: 0.8rem 1rem;
+			z-index: 3;
+			font-size: 0.8rem;
+			font-family: 'Courier New', Courier, monospace;
+			text-shadow: 0px 2px 12px rgba(0, 0, 0, 0.5);
+    		font-weight: 800;
+			letter-spacing: 1px;
+			background-image: radial-gradient(ellipse at top left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 70%);
+		}
 	}
 	.content-actions {
 		display: flex;
@@ -81,9 +95,62 @@
 		flex-wrap: nowrap;
 		gap: 1rem;
 		padding: 1rem;
+		align-items: stretch;
+
+		& > * {
+			width: 50%;
+		}
+
+		&.flex-column {
+			flex-direction: column;
+			& > * {
+				width: 100%;
+			}
+		}
 
 		.wp-block-button {
-			width: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: stretch;
+
+			a {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+			}
+		}
+
+		.wp-block-shortcut-badge,
+		.wp-element-button::before {
+			border-radius: 5px !important;
+			border-width: 2px !important;
+		}
+
+		.wp-block-shortcut-badge {
+			border-bottom: 0;
+			position: relative;
+			font-size: 0;
+			border: solid rgba(255,255,255,.5);
+			overflow: hidden;
+
+			.badge-background {
+				position: absolute;
+				left: 9.1%;
+				top: 4.7%;
+				width: 24.2%;
+				height: auto;
+				aspect-ratio: 1;
+				border-radius: 6px;
+				object-fit: cover;
+				transform: rotate3d(6, 3, 5, 290deg);
+				box-shadow: -4px 4px 5px rgba(0,0,0,0.15);
+				background-color: white;
+			}
+			.badge {
+				width: 100%;
+				height: auto;
+			}
 		}
 	}
 }
