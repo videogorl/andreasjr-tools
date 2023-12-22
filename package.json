@@ -16,6 +16,8 @@
 		"start": "wp-scripts start --webpack-copy-php  --webpack-src-dir=blocks/src --output-path=blocks/build"
 	},
 	"devDependencies": {
+		"@wordpress/components": "^25.14.0",
+		"@wordpress/data": "^9.18.0",
 		"@wordpress/scripts": "^26.19.0"
 	}
 }
