@@ -143,9 +143,8 @@
 				aspect-ratio: 1;
 				border-radius: 6px;
 				object-fit: cover;
-				transform: rotate3d(6, 3, 5, 290deg);
+				transform: rotate3d(6, 3, 5, 290deg) scale(1.23);
 				box-shadow: -4px 4px 5px rgba(0,0,0,0.15);
-				background-color: white;
 			}
 			.badge {
 				width: 100%;
