@@ -40,7 +40,7 @@ export default function Edit({
 	return (
 		<div { ...useBlockProps() }>
 			
-			{ __( 'Trading Card – hello from the editor!', 'andreasjr-tools' ) }
+			{ __( 'Series – hello from the editor!', 'andreasjr-tools' ) }
 		</div>
 	);
 }
