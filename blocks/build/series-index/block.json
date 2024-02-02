@@ -1,41 +1,24 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "andreasjr-tools/trading-card",
+  "name": "andreasjr-tools/series-index",
   "version": "1.0.0",
-  "title": "Trading Card",
+  "title": "Series Index",
   "category": "theme",
   "icon": "smiley",
-  "description": "Example block scaffolded with Create Block tool.",
+  "description": "Display series that the post is part of.",
   "example": {},
   "supports": {
     "html": false
   },
   "attributes": {
-    "getDataFrom": {
+    "postId": {
       "type": "string",
       "default": "currentPost"
-    },
-    "postId": {
-      "type": "number",
-      "default": null
-    },
-    "customData": {
-      "type": "object",
-      "default": {
-        "title": "",
-        "description": "",
-        "image": {},
-        "url": "",
-        "category": "",
-        "line1": "",
-        "line2": ""
-      }
     }
   },
   "usesContext": [
-    "postId",
-    "postType"
+    "postId"
   ],
   "textdomain": "andreasjr-tools",
   "editorScript": "file:./index.js",
