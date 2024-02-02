@@ -3,29 +3,46 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 
-$resource_url = get_metadata('post', $block->context['postId'], 'resource_url', true) ?? null;
-$resource_image = get_metadata('post', $block->context['postId'], 'resource_image', true) ?? null;
-$resource_description = get_metadata('post', $block->context['postId'], 'resource_description', true) ?? null;
+$terms = wp_get_post_terms( $block->context['postId'], 'post-series' );
 
-$permalink = get_permalink($block->context['postId']);
+if ( empty($terms[0] )) return;
+$term 				= $terms[0];
+$term_name 			= $term -> name;
+$term_description 	= $term-> description;
+$term_id 			= $terms[0]-> term_id;
+
+$query_args = array(
+	"post_type" => "post",
+	"tax_query" => [
+		[
+			"taxonomy" 	=> "post-series",
+			"field" 	=> 'term_id',
+			"terms" 		=> $term_id
+		]
+	]
+);
+$query = new WP_Query( $query_args );
+
+if (!$query->have_posts()) return;
 
 ?>
-<div <?php echo get_block_wrapper_attributes(); ?>>
-	<div class="content-header">
-		<figure class="content-header--featured-image-background">
-			<?= get_the_post_thumbnail($block->context['postId'], 'full' ) ?>
-		</figure>
-		<?php if ($resource_image) : ?><figure class="content-header--resource-image"><a href="<?=$permalink?>">
-			<?= wp_get_attachment_image( $resource_image['id'], 'full' ) ?>
-		</a></figure><?php endif; ?>
-	</div>
-
-	<div class="content-title"><h2><?= get_the_title($block->context['postId']) ?></h2></div>
-	<?= $resource_description ? '<div class="content-description">' . $resource_description . '</div>' : '' ?>
-
-	<div class="content-actions wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
-		<div class="wp-block-button is-style-outline"><a href="<?=$permalink?>" class="wp-block-button__link wp-element-button">Learn More</a></div>
-		<?php if ($resource_url): ?><div class="wp-block-button"><a href="<?= $resource_url ?>" target="_blank" class="wp-element-button">Get Shortcut</a></div><?php endif; ?>
-	</div>
-	
+<div <?= get_block_wrapper_attributes([
+	'class' => 'series-' . $term_id
+]) ?>>
+	<!-- <span class="is-style-text-action">Series</span> -->
+	<h2>Part of series: <a href="<?= get_term_link( $term_id ) ?>"><?= $term_name ?></a></h2>
+	<?= $term_description ? '<p class="series-description">'. $term_description .'</p>' : '' ?>
+	<ul>
+		<?php while ($query->have_posts()) {
+			$query->the_post();
+			$is_current_post = get_the_ID() === $block->context['postId'];
+			echo sprintf(
+				'<li class="%3$s%4$s"><a href="%2$s">%1$s</a></li>',
+				get_the_title(),
+				get_the_permalink(),
+				'item-' . get_the_ID(),
+				$is_current_post ? ' current-item' : ''
+			);
+		} ?>
+	</ul>
 </div>
