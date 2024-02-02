@@ -199,6 +199,27 @@ add_action( 'init', function() {
 		),
 	]);
 
+
+	/**
+	 * "Series" taxonomy
+	 */
+	register_taxonomy( "post-series", [ "post" ], [
+		"label" 				=> esc_html__( "Series", "andreasjr-filament" ),
+		"public" 				=> true,
+		"publicly_queryable" 	=> true,
+		"hierarchical" 			=> false,
+		"show_ui" 				=> true,
+		"show_in_menu" 			=> true,
+		"show_in_nav_menus" 	=> true,
+		"query_var" 			=> true,
+		"rewrite" 				=> [ 'slug' => 'series', 'with_front' => false, ],
+		"show_admin_column" 	=> true,
+		"show_in_rest" 			=> true,
+		"show_tagcloud" 		=> false,
+		"show_in_quick_edit" 	=> true,
+		"sort" 					=> false,
+		"show_in_graphql" 		=> false,
+	] );
 	
 } );
 
