@@ -17,6 +17,9 @@
 			"default": "currentPost"
 		}
 	},
+	"usesContext": [
+		"postId"
+	],
 	"textdomain": "andreasjr-tools",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
