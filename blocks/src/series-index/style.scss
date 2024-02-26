@@ -5,85 +5,87 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-andreasjr-tools-trading-card {
-	margin-left: auto;
-    margin-right: auto;
+.wp-block-andreasjr-tools-series-index {
+	--local--overflow: 1rem;
+	--local--border--width: 3px;
+	--local--indicator--size: 0.8rem;
 
-	--trading-card--image-accent: var(--wp--preset--color--red);
-	--trading-card--icon-size: 150px;
-	--trading-card--icon-padding: calc(var(--trading-card--icon-size)/2);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
-	gap: 1rem;
-	border-radius: 5px;
-	overflow: hidden;
-
-	figure {
-		margin: 0;
-	}
-	h2 {
-		margin: 0;
-	}
-	.wp-element-button {
-		display: block;
-		text-align: center;
-	}
-	max-width: 320px !important;
-	background-color: black;
-	.content-title,
-	.content-description,
-	.content-actions {
-		padding-left: 1rem;
-		padding-right: 1rem;
-	}
-	.content-header {
+	.series-description,
+	li a {
+		border-left-width: 3px;
+		border-left-style: solid;
+		
+		padding: var(--local--overflow) calc(var(--local--overflow) + (var(--local--indicator--size)/2));
+		margin: calc(var(--local--overflow) * -1) 0px;
 		position: relative;
-		height: var(--trading-card--icon-size);
-		margin-bottom: calc(var(--trading-card--icon-size)/2);
-		a {
-			text-decoration: none;
-			border-bottom: none;
-		}
-		figure {
-			width: 100%;
-			height: 100%;
-		}
-		figure.content-header--featured-image-background {
-			position: absolute;
-			inset: 0;
-			z-index: 0;
-			background: linear-gradient(45deg, var(--trading-card--image-accent) 0%, var(--wp--preset--color--primary) 100%);
+		left: calc(var(--local--indicator--size)/2);
 
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-		}
-		figure.content-header--resource-image {
-			position: relative;
-			top: var(--trading-card--icon-padding);
-			z-index: 1;
-			text-align: center;
-			img {
-				height: var(--trading-card--icon-size);
-				width: var(--trading-card--icon-size);
-				object-fit: contain;
-				aspect-ratio: 1/1;
-			}
+		@media screen and (min-width: 810px) {
+			left: calc(-1 * (var(--local--indicator--size) / 2 + var(--local--overflow)));
 		}
 	}
-	.content-actions {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: nowrap;
-		gap: 1rem;
-		padding: 1rem;
+	& > ul:nth-child(2) {
+		margin-top: calc( var(--local--overflow) * 2 );
+	}
+	ul, li {
+		padding: 0;
+		list-style: none;
+		margin-top: 0;
+	}
+	.series-description {
+		border-image: 
+			linear-gradient( to bottom, 
+				rgba(255,255,255, 0) 0%, 
+				rgba(255,255,255, 0.5) var(--local--overflow),
+				rgba(255,255,255, 0.5) calc(100% - var(--local--overflow) ), 
+				rgba(255,255,255, 0) 100%, 
+		) 1 100%;
+	}
 
-		.wp-block-button {
-			width: 50%;
+	li a, li a::before, .series-description  {
+		transition: all .2s ease;
+	}
+	li a {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: row;
+		text-decoration: none;
+		opacity: 1;
+		gap: var(--local--overflow);
+		border-image: 
+			linear-gradient( to bottom, 
+				rgba(255,255,255, 0) 0%, 
+				rgba(255,255,255, 1) var(--local--overflow),
+				rgba(255,255,255, 1) calc(100% - var(--local--overflow) ), 
+				rgba(255,255,255, 0) 100%, 
+		) 1 100%;
+
+
+		&:before {
+			content: "";
+			background-color: var(--wp--preset--color--contrast);
+			height: var(--local--indicator--size);
+			width: var(--local--indicator--size);
+			border-radius: 100px;
+			left: calc(-0.5 * var(--local--border--width));
+			top: calc( var(--local--overflow) + var(--local--indicator--size) );
+			transform: translateX(-50%) translateY(-50%);
+			display:block;
+			position: absolute;
+		}
+
+		.date {
+			font-size: 0.75rem;
+			color: var(--wp--preset--color--contrast);
+			opacity: 0.5;
+		}
+	}
+	li {
+		&:not(.current-item) a:not(
+			:hover,
+			:focus
+		) {
+			opacity: 0.5;
 		}
 	}
 }
