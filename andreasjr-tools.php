@@ -9,9 +9,9 @@
  * Author:            Felicity Reif
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       andreasjr-tools
+ * Text Domain:       videogorl-tools
  *
- * @package           andreasjr-tools
+ * @package           videogorl-tools
  */
 
 namespace videogorl\tools;
@@ -113,7 +113,7 @@ add_action(
 				'hierarchical'        => true,
 				'can_export'          => true,
 				'rewrite'             => array(
-					'slug'       => 'portfolio-beta',
+					'slug'       => 'portfolio',
 					'with_front' => false,
 				),
 				'query_var'           => true,
@@ -121,7 +121,7 @@ add_action(
 				'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),
 				'taxonomies'          => array( 'category', 'post_tag' ),
 				'show_in_graphql'     => true,
-				'has_archive'         => 'portfolio-beta',
+				'has_archive'         => 'portfolio',
 			)
 		);
 
